@@ -1,5 +1,5 @@
-let array = [ 
-    { //Az array 1. és 2.elemének a létrhozása.
+const array = [ //Az array tömb létrehozása.
+    { //Az array 1. és 2.elemének a létrehozása.
         uralkodo: "I. István", //Értékadás az array 1.elem uralkodójának.
         esemeny_1: "Koronázás", //Értékadás az array 1.elem eseményének.
         evszam_1: "1000", //Értékadás az array 1.elem évszámának.
@@ -7,13 +7,13 @@ let array = [
         evszam_2: "1001" //Értékadás az array 2.elem évszámának.   
     },
     
-    { //Az array 3.elemének a létrhozása.
+    { //Az array 3.elemének a létrehozása.
         uralkodo: "IV. Béla", //Értékadás az array 3.elem uralkodójának.
         esemeny_1: "tatárjárás", //Értékadás az array 3.elem eseményének.
         evszam_1: "1241-1242" //Értékadás az array 3.elem évszámának.
     },
     
-    { //Az array 4. és 5.elemének a létrhozása.
+    { //Az array 4. és 5.elemének a létrehozása.
         uralkodo: "Mátyás Király", //Értékadás az array 4.elem uralkodójának.
         esemeny_1: "Bécs elfoglalása", //Értékadás az array 4.elem eseményének.
         evszam_1: "1485", //Értékadás az array 4.elem évszámának.
@@ -21,7 +21,7 @@ let array = [
         evszam_2: "1479" //Értékadás az array 5.elem évszámának.
     },
     
-    { //Az array 6. és 7.elemének a létrhozása.
+    { //Az array 6. és 7.elemének a létrehozása.
         uralkodo: "II. Rákóczi Ferenc", //Értékadás az array 6.elem uralkodójának.
         esemeny_1: "A szabadságharc kezdete", //Értékadás az array 6.elem eseményének.
         evszam_1: "1703", //Értékadás az array 6.elem évszámának.
@@ -30,10 +30,10 @@ let array = [
     }
 ]
 
-const head = { //Az array 0.elemének a létrhozása.
-    uralkodo: "Uralkodó", //Értékadás az array 0.elem uralkodójának.
-    esemeny: "Esemény", //Értékadás az array 0.elem eseményének.
-    evszam: "Évszám" //Értékadás az array 0.elem évszámának.
+const head = { //A fejléc objektum létrehozása.
+    uralkodo: "Uralkodó", //Értékadás az objektum uralkodójának.
+    esemeny: "Esemény", //Értékadás az objektum eseményének.
+    evszam: "Évszám" //Értékadás az objektum évszámának.
 }
 
 const table = document.createElement('table'); //Táblázat lértehozása.
@@ -107,3 +107,30 @@ function render(){ //A render függvény meghatározása.
     }
 }
 render(); //A render függvényt meghívása.
+
+const form = document.getElementById('form'); //Az űrlapban lévő formnak az id-jének az elkérése.
+form.addEventListener('submit', function(e) { //A függvény meghívódik, a submit használatakor.
+    e.preventDefault(); //A böngésző alapértelmezett lefutásának a megakadályozása.
+    const uralkodoHtmlElement = document.getElementById('uralkodo_nev'); //A HtmlElement elkérése, amelynek az uralkodo_nev az id-je.
+    const esemeny_1HtmlElement = document.getElementById('esemeny1'); //A HtmlElement elkérése, amelynek az esemeny1 az id-je.
+    const evszam_1HtmlElement = document.getElementById('evszam1'); //A HtmlElement elkérése, amelynek az evszam1 az id-je.
+    const esemeny_2HtmlElement = document.getElementById('esemeny2'); //A HtmlElement elkérése, amelynek az esemeny2 az id-je.
+    const evszam_2HtmlElement = document.getElementById('evszam2'); //A HtmlElement elkérése, amelynek az evszam2 az id-je.
+
+    const uralkodoValue = uralkodoHtmlElement.value; //Az uralkodoHtmlElement értékének belerakása egy változóba.
+    const esemeny_1Value = esemeny_1HtmlElement.value; //Az esemeny_1HtmlElement értékének belerakása egy változóba.
+    const evszam_1Value = evszam_1HtmlElement.value; //Az evszam_1HtmlElement értékének belerakása egy változóba.
+    const esemeny_2Value = esemeny_2HtmlElement.value === "" ? undefined : esemeny_2HtmlElement.value; //Az esemeny_2HtmlElement értékének belerakása egy változóba. Amennyiben az esemeny_2HtmlElement-nek nincs értéke, akkor undefined lesz.
+    const evszam_2Value = evszam_2HtmlElement.value === "" ? undefined : evszam_2HtmlElement.value; //Az evszam_2HtmlElement értékének belerakása egy változóba. Amennyiben az evszam_2HtmlElement-nek nincs értéke, akkor undefined lesz.
+
+    const newElement = { //A newElement létrehozása.
+        uralkodo: uralkodoValue, //Az urakodo értéke az uralkodoValue lesz.
+        esemeny_1: esemeny_1Value, //Az esemeny_1 értéke az esemeny_1Value lesz.
+        evszam_1: evszam_1Value, //Az evszam_1 értéke az evszam_1Value lesz.
+        esemeny_2: esemeny_2Value, //Az esemeny_2 értéke az esemeny_2Value lesz.
+        evszam_2: evszam_2Value //Az evszam_2 értéke az evszam_2Value lesz.
+    }
+    array.push(newElement); //A newElement hozzáadása az arrayhez.
+    tbody.innerHTML = ''; //A táblázat tartalmának kitörlése.
+    render(); //A render függvény újra renderelése.
+})
