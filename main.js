@@ -74,9 +74,7 @@ tr.appendChild(th_3); //A fejléc sorában lévő 3.cella hozzáadása a fejléc
 const tbody = document.createElement('tbody'); //Törzs létrehozása.
 table.appendChild(tbody); //Törzs hozzáadása a táblázathoz.
 
-for(let i = 0; i < array.length; i++) { //Ciklus segítségével végighaladás az arrayen.
-    const currentElement = array[i]; //Változó definiálása, amibe az array aktuális számú elemét belerakom.
-
+for(const currentElement of array) { //Végighaladás az arrayen, a currentElement az aktuális elem.
     const tr_1 = document.createElement('tr'); //Egy új sor létrehozása a táblázatba.
     tbody.appendChild(tr_1); //Az adott sor hozzáfűzése a táblázathoz.
 
@@ -92,14 +90,17 @@ for(let i = 0; i < array.length; i++) { //Ciklus segítségével végighaladás 
     evszam_1.innerHTML = currentElement.evszam_1; //A cella tartalmának megadása az aktuális elem évszámának az értékével.
     tr_1.appendChild(evszam_1); //A létrehozott cellát hozzáadom a már korábban létrehozott sorhoz.
 
-    const tr_2 = document.createElement('tr'); //Még egy új sor létrehozása a táblázatba.
-    tbody.appendChild(tr_2); //Az adott sor hozzáfűzése a táblázathoz.
+    if(currentElement.esemeny_2 !== undefined && currentElement.evszam_2 !== undefined){ //Ha a currentElement.esemeny_2 és a currentElement.evszam_2 nem egyenlő undefineddal, akkor végig megy az elágazáson.
+        const tr_2 = document.createElement('tr'); //Még egy új sor létrehozása a táblázatba.
+        tbody.appendChild(tr_2); //Az adott sor hozzáfűzése a táblázathoz.
+        uralkodo.rowSpan = 2; //Ha idáig lefut, akkor összevonjuk az uralkodó 2 sorát.
 
-    const esemeny_2 = document.createElement('td'); //Új cella létrehozása az adott sorban.
-    esemeny_2.innerHTML = currentElement.esemeny_2; //A cella tartalmának megadása az aktuális elem eseményének az értékével.
-    tr_2.appendChild(esemeny_2); //A létrehozott cellát hozzáadom a már korábban létrehozott sorhoz.
+        const esemeny_2 = document.createElement('td'); //Új cella létrehozása az adott sorban.
+        esemeny_2.innerHTML = currentElement.esemeny_2; //A cella tartalmának megadása az aktuális elem eseményének az értékével.
+        tr_2.appendChild(esemeny_2); //A létrehozott cellát hozzáadom a már korábban létrehozott sorhoz.
 
-    const evszam_2 = document.createElement('td'); //Új cella létrehozása az adott sorban.
-    evszam_2.innerHTML = currentElement.evszam_2; //A cella tartalmának megadása az aktuális elem évszámának az értékével.
-    tr_2.appendChild(evszam_2); //A létrehozott cellát hozzáadom a már korábban létrehozott sorhoz.
+        const evszam_2 = document.createElement('td'); //Új cella létrehozása az adott sorban.
+        evszam_2.innerHTML = currentElement.evszam_2; //A cella tartalmának megadása az aktuális elem évszámának az értékével.
+        tr_2.appendChild(evszam_2); //A létrehozott cellát hozzáadom a már korábban létrehozott sorhoz.
+    }   
 }
