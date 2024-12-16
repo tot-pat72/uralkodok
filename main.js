@@ -117,20 +117,54 @@ form.addEventListener('submit', function(e) { //A függvény meghívódik, a sub
     const esemeny_2HtmlElement = document.getElementById('esemeny2'); //A HtmlElement elkérése, amelynek az esemeny2 az id-je.
     const evszam_2HtmlElement = document.getElementById('evszam2'); //A HtmlElement elkérése, amelynek az evszam2 az id-je.
 
+    const thisForm = e.currentTarget; //Az e.currentTarget tulajdonsága, amely a formot tartalmazza, ennek eltárolása egy változóba.
+    const errorHtmlElements = thisForm.querySelectorAll('.error'); //A formon belüli összes error classal ellátott html element elkérése.
+    for(const errorElement of errorHtmlElements){ //Végighaladás a visszakapott errorHtmlElementen.
+        errorElement.innerHTML = ''; //Az aktuális elem tartalmának kitörlése.
+    }
+    let valid = true; //A valid valtozó kezdő értéke igaz.
+
     const uralkodoValue = uralkodoHtmlElement.value; //Az uralkodoHtmlElement értékének belerakása egy változóba.
     const esemeny_1Value = esemeny_1HtmlElement.value; //Az esemeny_1HtmlElement értékének belerakása egy változóba.
     const evszam_1Value = evszam_1HtmlElement.value; //Az evszam_1HtmlElement értékének belerakása egy változóba.
     const esemeny_2Value = esemeny_2HtmlElement.value === "" ? undefined : esemeny_2HtmlElement.value; //Az esemeny_2HtmlElement értékének belerakása egy változóba. Amennyiben az esemeny_2HtmlElement-nek nincs értéke, akkor undefined lesz.
     const evszam_2Value = evszam_2HtmlElement.value === "" ? undefined : evszam_2HtmlElement.value; //Az evszam_2HtmlElement értékének belerakása egy változóba. Amennyiben az evszam_2HtmlElement-nek nincs értéke, akkor undefined lesz.
 
-    const newElement = { //A newElement létrehozása.
-        uralkodo: uralkodoValue, //Az urakodo értéke az uralkodoValue lesz.
-        esemeny_1: esemeny_1Value, //Az esemeny_1 értéke az esemeny_1Value lesz.
-        evszam_1: evszam_1Value, //Az evszam_1 értéke az evszam_1Value lesz.
-        esemeny_2: esemeny_2Value, //Az esemeny_2 értéke az esemeny_2Value lesz.
-        evszam_2: evszam_2Value //Az evszam_2 értéke az evszam_2Value lesz.
+    if(uralkodoValue === ''){ //Ha az uralkodó beviteli mezője üres.
+        const parentElement = uralkodoHtmlElement.parentElement; //Az uralkodó beviteli mező parentElement property-jének az eltárolása egy változóban.
+        const errorplace = parentElement.querySelector('.error'); //Az uralkodó beviteli mező parentElement div-jében az error classal ellátott elem megkeresése és annak eltárolása egy változóban.
+        if (errorplace != undefined){ //Ha talál ilyen mezőt(nem undefined).
+            errorplace.innerHTML = 'Az uralkodó megadása kötelező'; //Akkor az uralkodó megadása kötelező hibaüzenetet dobja ki.
+        }
+        valid = false; //A valid változó értéke hamis lesz.
     }
-    array.push(newElement); //A newElement hozzáadása az arrayhez.
-    tbody.innerHTML = ''; //A táblázat tartalmának kitörlése.
-    render(); //A render függvény újra renderelése.
+    if(esemeny_1Value === ''){ //Ha az esemény beviteli mezője üres.
+        const parentElement = esemeny_1HtmlElement.parentElement; //Az esemény beviteli mező parentElement property-jének az eltárolása egy változóban.
+        const errorplace = parentElement.querySelector('.error'); //Az esemény beviteli mező parentElement div-jében az error classal ellátott elem megkeresése és annak eltárolása egy változóban.
+        if (errorplace != undefined){ //Ha talál ilyen mezőt(nem undefined).
+            errorplace.innerHTML = 'Az esemény megadása kötelező'; //Akkor az esemény megadása kötelező hibaüzenetet dobja ki.
+        }
+        valid = false; //A valid változó értéke hamis lesz.
+    }
+    if(evszam_1Value === ''){ //Ha az évszám beviteli mezője üres.
+        const parentElement = evszam_1HtmlElement.parentElement; //Az évszám beviteli mező parentElement property-jének az eltárolása egy változóban.
+        const errorplace = parentElement.querySelector('.error'); //Az évszám beviteli mező parentElement div-jében az error classal ellátott elem megkeresése és annak eltárolása egy változóban.
+        if (errorplace != undefined){ //Ha talál ilyen mezőt(nem undefined).
+            errorplace.innerHTML = 'Az évszám megadása kötelező'; //Akkor az évszám megadása kötelező hibaüzenetet dobja ki.
+        }
+        valid = false; //A valid változó értéke hamis lesz.
+    }
+    if(valid){
+        const newElement = { //A newElement létrehozása.
+            uralkodo: uralkodoValue, //Az objektum urakodo tulajdonságának értéke az uralkodoValue lesz.
+            esemeny_1: esemeny_1Value, //Az objektum esemeny_1 tulajdonságának értéke az esemeny_1Value lesz.
+            evszam_1: evszam_1Value, //Az objektum evszam_1 tulajdonságának értéke az evszam_1Value lesz.
+            esemeny_2: esemeny_2Value, //Az objektum esemeny_2 tulajdonságának értéke az esemeny_2Value lesz.
+            evszam_2: evszam_2Value //Az objektum evszam_2 tulajdonságának értéke az evszam_2Value lesz.
+        }
+        array.push(newElement); //A newElement hozzáadása az arrayhez.
+        tbody.innerHTML = ''; //A táblázat tartalmának kitörlése.
+        render(); //A render függvény újra renderelése.
+        thisForm.reset(); //A form visszaállítása alaphelyzetbe.
+    }
 })
