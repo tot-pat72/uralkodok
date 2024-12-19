@@ -1,32 +1,32 @@
 const array = [ //Az array tömb létrehozása.
-    { //Az array 1. és 2.elemének a létrehozása.
-        uralkodo: "I. István", //Értékadás az array 1.elem uralkodójának.
-        esemeny_1: "Koronázás", //Értékadás az array 1.elem eseményének.
-        evszam_1: "1000", //Értékadás az array 1.elem évszámának.
-        esemeny_2: "Pannonhalmi apátság megalapítása", //Értékadás az array 2.elem eseményének.
-        evszam_2: "1001" //Értékadás az array 2.elem évszámának.   
+    { //Az array 1.elemének a létrehozása.
+        uralkodo: "I. István", //Értékadás az array 1.elem uralkodo tulajdonságának.
+        esemeny_1: "Koronázás", //Értékadás az array 1.elem esemeny_1 tulajdonságának.
+        evszam_1: "1000", //Értékadás az array 1.elem evszam_1 tulajdonságának.
+        esemeny_2: "Pannonhalmi apátság megalapítása", //Értékadás az array 1.elem esemeny_2 tulajdonságának.
+        evszam_2: "1001" //Értékadás az array 1.elem evszam_2 tulajdonságának.
+    },
+    
+    { //Az array 2.elemének a létrehozása.
+        uralkodo: "IV. Béla", //Értékadás az array 2.elem uralkodo tulajdonságának.
+        esemeny_1: "tatárjárás", //Értékadás az array 2.elem esemeny_1 tulajdonságának.
+        evszam_1: "1241-1242" //Értékadás az array 2.elem evszam_1 tulajdonságának.
     },
     
     { //Az array 3.elemének a létrehozása.
-        uralkodo: "IV. Béla", //Értékadás az array 3.elem uralkodójának.
-        esemeny_1: "tatárjárás", //Értékadás az array 3.elem eseményének.
-        evszam_1: "1241-1242" //Értékadás az array 3.elem évszámának.
+        uralkodo: "Mátyás Király", //Értékadás az array 3.elem uralkodo tulajdonságának.
+        esemeny_1: "Bécs elfoglalása", //Értékadás az array 3.elem esemeny_1 tulajdonságának.
+        evszam_1: "1485", //Értékadás az array 3.elem evszam_1 tulajdonságának.
+        esemeny_2: "Kenyérmezei csata", //Értékadás az array 3.elem esemeny_2 tulajdonságának.
+        evszam_2: "1479" //Értékadás az array 3.elem evszam_2 tulajdonságának.
     },
     
-    { //Az array 4. és 5.elemének a létrehozása.
-        uralkodo: "Mátyás Király", //Értékadás az array 4.elem uralkodójának.
-        esemeny_1: "Bécs elfoglalása", //Értékadás az array 4.elem eseményének.
-        evszam_1: "1485", //Értékadás az array 4.elem évszámának.
-        esemeny_2: "Kenyérmezei csata", //Értékadás az array 5.elem eseményének.
-        evszam_2: "1479" //Értékadás az array 5.elem évszámának.
-    },
-    
-    { //Az array 6. és 7.elemének a létrehozása.
-        uralkodo: "II. Rákóczi Ferenc", //Értékadás az array 6.elem uralkodójának.
-        esemeny_1: "A szabadságharc kezdete", //Értékadás az array 6.elem eseményének.
-        evszam_1: "1703", //Értékadás az array 6.elem évszámának.
-        esemeny_2: "A szabadságharc vége", //Értékadás az array 7.elem eseményének.
-        evszam_2: "1711" //Értékadás az array 7.elem évszámának.
+    { //Az array 4.elemének a létrehozása.
+        uralkodo: "II. Rákóczi Ferenc", //Értékadás az array 4.elem uralkodo tulajdonságának.
+        esemeny_1: "A szabadságharc kezdete", //Értékadás az array 4.elem esemeny_1 tulajdonságának.
+        evszam_1: "1703", //Értékadás az array 4.elem evszam_1 tulajdonságának.
+        esemeny_2: "A szabadságharc vége", //Értékadás az array 4.elem esemeny_2 tulajdonságának.
+        evszam_2: "1711" //Értékadás az array 4.elem evszam_2 tulajdonságának.
     }
 ]
 
@@ -60,15 +60,15 @@ const tr = document.createElement('tr'); //Fejlécben lévő sor létrehozása.
 thead.appendChild(tr); //Fejlécben lévő sor hozzáadása a fejléchez.
 
 const th_1 = document.createElement('th'); //A fejléc sorában lévő 1.cella létrehozása.
-th_1.innerHTML = head.uralkodo; //A cella tartalmának megadása az array 0.elem uralkodójának az értékével.
+th_1.innerHTML = head.uralkodo; //A cella tartalmának megadása az aktuális elem uralkodójának az értékével.
 tr.appendChild(th_1); //A fejléc sorában lévő 1.cella hozzáadása a fejlécben lévő sorhoz.
 
 const th_2 = document.createElement('th'); //A fejléc sorában lévő 2.cella létrehozása.
-th_2.innerHTML = head.esemeny; //A cella tartalmának megadása az array 0.elem eseményének az értékével.
+th_2.innerHTML = head.esemeny; //A cella tartalmának megadása az aktuális elem eseményének az értékével.
 tr.appendChild(th_2); //A fejléc sorában lévő 2.cella hozzáadása a fejlécben lévő sorhoz.
 
 const th_3 = document.createElement('th'); //A fejléc sorában lévő 3.cella létrehozása.
-th_3.innerHTML = head.evszam; //A cella tartalmának megadása az array 0.elem évszámának az értékével.
+th_3.innerHTML = head.evszam; //A cella tartalmának megadása az aktuális elem évszámának az értékével.
 tr.appendChild(th_3); //A fejléc sorában lévő 3.cella hozzáadása a fejlécben lévő sorhoz.
 
 const tbody = document.createElement('tbody'); //Törzs létrehozása.
