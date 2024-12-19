@@ -56,20 +56,16 @@ colgroup.appendChild(colSpan_3); //3.oszlop hozzáadása a Colgouphoz.
 const thead = document.createElement('thead'); //Fejléc létrehozása.
 table.appendChild(thead); //Fejléc hozzáadása a táblázathoz.
 
-const tr = document.createElement('tr'); //Fejlécben lévő sor létrehozása.
-thead.appendChild(tr); //Fejlécben lévő sor hozzáadása a fejléchez.
-
-const th_1 = document.createElement('th'); //A fejléc sorában lévő 1.cella létrehozása.
-th_1.innerHTML = head.uralkodo; //A cella tartalmának megadása az aktuális elem uralkodójának az értékével.
-tr.appendChild(th_1); //A fejléc sorában lévő 1.cella hozzáadása a fejlécben lévő sorhoz.
-
-const th_2 = document.createElement('th'); //A fejléc sorában lévő 2.cella létrehozása.
-th_2.innerHTML = head.esemeny; //A cella tartalmának megadása az aktuális elem eseményének az értékével.
-tr.appendChild(th_2); //A fejléc sorában lévő 2.cella hozzáadása a fejlécben lévő sorhoz.
-
-const th_3 = document.createElement('th'); //A fejléc sorában lévő 3.cella létrehozása.
-th_3.innerHTML = head.evszam; //A cella tartalmának megadása az aktuális elem évszámának az értékével.
-tr.appendChild(th_3); //A fejléc sorában lévő 3.cella hozzáadása a fejlécben lévő sorhoz.
+function generateHeader(){ //A generateHeader függvény meghatározása.
+    const header = ["Uralkodó", "Esemény", "Évszám"]; //A header változóba, a tömb tartalmának az eltárolása.
+    const tr = document.createElement('tr'); //Fejlécben lévő sor létrehozása.
+    thead.appendChild(tr); //Fejlécben lévő sor hozzáadása a fejléchez.
+    for(const head of header){ //Végighaladás a headeren, a head az aktuális elem.
+        const th = document.createElement('th') //Új cella létrehozása.
+        th.innerHTML = head; //A cella tartalmának megadása a headnek az értékével.
+    }
+}
+generateHeader(); //A generateHeader függvény meghívása.
 
 const tbody = document.createElement('tbody'); //Törzs létrehozása.
 table.appendChild(tbody); //Törzs hozzáadása a táblázathoz.
