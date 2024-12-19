@@ -59,6 +59,16 @@ table.appendChild(thead); //Fejléc hozzáadása a táblázathoz.
 const tbody = document.createElement('tbody'); //Törzs létrehozása.
 table.appendChild(tbody); //Törzs hozzáadása a táblázathoz.
 
+/**
+ * A form létrehozása:
+ * -Uralkodó neve
+ * -Első esemény
+ * -Első évszám
+ * -Második esemény
+ * -Második évszám
+ * Button a kitöltött form hozzáadásához.
+ * Minden inputnak van egy error classa.
+ */
 function generateForm(){ //A generateForm függvény meghatározása.
     const form = document.createElement('form'); //Form létrehozása.
     form.id = 'form'; //A form id-jének megadása.
@@ -177,6 +187,11 @@ function generateForm(){ //A generateForm függvény meghatározása.
 }
 generateForm(); //A generateForm függvény meghívása.
 
+/**
+ * Táblázat fejlécének a létrehozása.
+ * A head végighalad a header tömbön.
+ * Az adatokat a header tömbből szedi ki. 
+ */
 function generateHeader(){ //A generateHeader függvény meghatározása.
     const header = ["Uralkodó", "Esemény", "Évszám"]; //A header változóba, a tömb tartalmának az eltárolása.
     const tr = document.createElement('tr'); //Fejlécben lévő sor létrehozása.
@@ -188,6 +203,11 @@ function generateHeader(){ //A generateHeader függvény meghatározása.
 }
 generateHeader(); //A generateHeader függvény meghívása.
 
+/**
+ * A render függvény létrehoz egy táblázatot az arrayben lévők alapján.
+ * Az uralkodó, esemény és évszám után új sor létrehozása, kivéve ha egy uralkodóhoz több esemény, évszám tartozik. Ez esetben ugyanahoz az uralkodóhoz egy új sor létrehozása.
+ * @param {array} array tartalmazza az adatokat.
+ */
 function render(array){ //A render függvény meghatározása, amelynek a bemeneti paramétere az array lesz.
     for(const currentElement of array) { //Végighaladás az arrayen, a currentElement az aktuális elem.
         const tr_1 = document.createElement('tr'); //Egy új sor létrehozása a táblázatba.
@@ -275,6 +295,12 @@ form.addEventListener('submit', function(e) { //A függvény meghívódik, a sub
     }
 })
 
+/**
+ * Ha nincs minden mező kitöltve, akkor hibaüzenetet dob.
+ * @param {HTMLElement} inputHTMLElement Ennek megvizsgálása, hogy üres e.
+ * @param {string} errormessage Hibaüzenet kiírása, hogyha üres a mező.
+ * @returns Visszatér, vagy hamissal hogyha nem ment át a validáción, igennel meg ha ki volt töltve mindkettő mező. 
+ */
 function validateFormHTMLField(inputHTMLElement, errormessage){ //A validateFormHTMLField függvény meghatározása.
     let valid = true; //A valid változó létrehozása, ami a true értéket kapja.
     if(inputHTMLElement.value === ''){ //Ha az inputHTMLElement.value beviteli mezője üres.
@@ -288,6 +314,13 @@ function validateFormHTMLField(inputHTMLElement, errormessage){ //A validateForm
     return valid; //Visszatérés a valid változóval. Amely hamis, hogyha nem ment át a validáción. Ha meg ki van töltve, akkor igazzal tér vissza.
 }
 
+/**
+ * A getNonEmptyFormHTMLField függvény csak akkor fut le, hogyha csak az egyik mező van kitöltve.
+ * @param {HTMLElement} esemeny_2 Ennek megvizsgálása, hogy van e benne valami.
+ * @param {HTMLElement} evszam_2 Ennek megvizsgálása, hogy van e benne valami.
+ * @param {string} errormessage Hibaüzenet kiírása, hogyha üres a mező.
+ * @returns Visszatér, vagy hamissal hogyha csak az egyik volt kitöltve, igennel meg ha ki volt töltve mindkettő mező.
+ */
 function getNonEmptyFormHTMLField(esemeny_2, evszam_2, errormessage){ //A getNonEmptyFormHTMLField függvény meghatározása.
     let valid = true; //A valid változó létrehozása, ami a true értéket kapja.
 
