@@ -136,6 +136,23 @@ form.addEventListener('submit', function(e) { //A függvény meghívódik, a sub
         valid = false; //A valid változó értéke false lesz.
     }
 
+    if(esemeny_2HtmlElement.value === '' && evszam_2HtmlElement.value !== ''){ //Ha az esemeny_2 beviteli mezője üres, viszont az evszam_2 meg nem.
+        const parentElement = esemeny_2HtmlElement.parentElement; //Az esemeny_2 beviteli mező parentElement property-jének az eltárolása egy változóban.
+        const errorplace = parentElement.querySelector('.error'); //Az esemeny_2 beviteli mező parentElement div-jében az error classal ellátott elem megkeresése és annak eltárolása egy változóban.
+        if (errorplace != undefined){ //Ha talál ilyen mezőt(nem undefined).
+            errorplace.innerHTML = "Az esemény és az évszám megadása kötelező"; //Akkor az esemény és az évszám megadása kötelező hibaüzenetet dobja ki.
+        }
+        valid = false; //A valid változó értéke false lesz.
+    };
+    if(evszam_2HtmlElement.value === '' && esemeny_2HtmlElement.value !== ''){ //Ha az evszam_2 beviteli mezője üres, viszont az esemeny_2 meg nem.
+        const parentElement = evszam_2HtmlElement.parentElement; //Az evszam_2 beviteli mező parentElement property-jének az eltárolása egy változóban.
+        const errorplace = parentElement.querySelector('.error'); //Az evszam_2 beviteli mező parentElement div-jében az error classal ellátott elem megkeresése és annak eltárolása egy változóban.
+        if (errorplace != undefined){ //Ha talál ilyen mezőt(nem undefined).
+            errorplace.innerHTML = "Az évszám és az esemény megadása kötelező"; //Akkor az évszám és az esemény megadása kötelező hibaüzenetet dobja ki.
+        }
+        valid = false; //A valid változó értéke false lesz.
+    };
+
     if(valid){ //Ha a valid változó értéke igaz(nem volt kihagyott mező).
         const uralkodoValue = uralkodoHtmlElement.value; //Az uralkodoHtmlElement értékének belerakása egy változóba.
         const esemeny_1Value = esemeny_1HtmlElement.value; //Az esemeny_1HtmlElement értékének belerakása egy változóba.
